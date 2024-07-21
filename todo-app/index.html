@@ -8,11 +8,14 @@
   </head>
   <script>
     const onPress = () => {
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+
       fetch('http://localhost:3000/todos', {
         method: 'POST',
         body: JSON.stringify({
-          title: 'Gym',
-          description: 'at 5 am',
+          title,
+          description,
         }),
         headers: {
           'content-type': 'application/json',
@@ -23,6 +26,16 @@
         });
       });
     };
+    const getData = () => {
+      fetch('http://localhost:3000/todos', {
+        method: 'GET',
+      }).then((res) => {
+        res.json().then((data) => {
+          console.log(data);
+        });
+      });
+    };
+    getData();
   </script>
   <body>
     <br />

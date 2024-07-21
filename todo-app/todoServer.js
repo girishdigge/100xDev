@@ -1,18 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const app = express();
 const cors = require('cors');
+const app = express();
 
-app.use(bodyParser.json());
 app.use(cors());
 
-let todos = [];
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '\\index.html');
-});
+let todos = [];
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '\\index.html');
+// });
 
 function findIndex(arr, id) {
   for (let i = 0; i < arr.length; i++) {
