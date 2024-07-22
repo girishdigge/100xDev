@@ -26,6 +26,13 @@
         });
       });
     };
+    const removeTODO = (id) => {
+      fetch('http://localhost:3000/todos/' + id, {
+        method: 'DELETE',
+      }).then((res) => {
+        res.json().then(() => {});
+      });
+    };
     const getData = () => {
       fetch('http://localhost:3000/todos', {
         method: 'GET',
@@ -36,13 +43,19 @@
             let childElement = document.createElement('div');
             let gchildEle1 = document.createElement('span');
             let gchildEle2 = document.createElement('span');
-            console.log(JSON.stringify(element));
+            let gchildEle3 = document.createElement('button');
+            id = element[1].id;
             title = element[1].title;
             desc = element[1].description;
+
             gchildEle1.innerHTML = title;
             gchildEle2.innerHTML = desc;
+            gchildEle3.innerHTML = 'Delete';
+            gchildEle3.setAttribute('onClick', 'removeTODO(' + id + ')');
+
             childElement.appendChild(gchildEle1);
             childElement.appendChild(gchildEle2);
+            childElement.appendChild(gchildEle3);
             parentElement.appendChild(childElement);
           });
         });
