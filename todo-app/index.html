@@ -31,7 +31,20 @@
         method: 'GET',
       }).then((res) => {
         res.json().then((data) => {
-          console.log(data);
+          data.entries().forEach((element) => {
+            let parentElement = document.getElementById('mainArea');
+            let childElement = document.createElement('div');
+            let gchildEle1 = document.createElement('span');
+            let gchildEle2 = document.createElement('span');
+            console.log(JSON.stringify(element));
+            title = element[1].title;
+            desc = element[1].description;
+            gchildEle1.innerHTML = title;
+            gchildEle2.innerHTML = desc;
+            childElement.appendChild(gchildEle1);
+            childElement.appendChild(gchildEle2);
+            parentElement.appendChild(childElement);
+          });
         });
       });
     };
@@ -48,5 +61,7 @@
       <br />
       <button onclick="onPress()">Send Todo</button>
     </div>
+
+    <div id="mainArea"></div>
   </body>
 </html>
