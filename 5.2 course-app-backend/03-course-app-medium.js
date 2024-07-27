@@ -14,14 +14,19 @@ let COURSES = [];
 // Read data from file, or initialize to empty array if file does not exist
 try {
   ADMINS = JSON.parse(fs.readFileSync('admins.json', 'utf8'));
-  USERS = JSON.parse(fs.readFileSync('users.json', 'utf8'));
-  COURSES = JSON.parse(fs.readFileSync('courses.json', 'utf8'));
 } catch {
   ADMINS = [];
+}
+try {
+  USERS = JSON.parse(fs.readFileSync('users.json', 'utf8'));
+} catch {
   USERS = [];
+}
+try {
+  COURSES = JSON.parse(fs.readFileSync('courses.json', 'utf8'));
+} catch {
   COURSES = [];
 }
-console.log(ADMINS);
 
 const SECRET = 'my-secret-key';
 
@@ -84,7 +89,7 @@ app.post('/admin/courses', authenticateJwt, (req, res) => {
   course.id = COURSES.length + 1;
   COURSES.push(course);
   fs.writeFileSync('courses.json', JSON.stringify(COURSES));
-  res.json({ message: 'Course created successfully', courseId: course.id });
+  res.json({ message: 'Course created successfully', course: course });
 });
 
 app.put('/admin/courses/:courseId', authenticateJwt, (req, res) => {
@@ -99,6 +104,7 @@ app.put('/admin/courses/:courseId', authenticateJwt, (req, res) => {
 });
 
 app.get('/admin/courses', authenticateJwt, (req, res) => {
+  console.log(COURSES);
   res.json({ courses: COURSES });
 });
 
