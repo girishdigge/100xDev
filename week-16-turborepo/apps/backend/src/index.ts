@@ -1,10 +1,10 @@
 import express from 'express';
-import { VALUE, URL } from '@repo/common/config';
+import { VALUE } from '@repo/common/config';
 const app = express();
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'hello world ' + VALUE + URL,
+    message: 'hello world ' + VALUE,
   });
 });
 
