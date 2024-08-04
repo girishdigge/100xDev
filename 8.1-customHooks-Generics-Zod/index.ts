@@ -1,3 +1,20 @@
+interface Todo {
+  id: number;
+  title: string;
+  description: string;
+  done: boolean;
+}
+
+type updateTodo = Partial<Todo>;
+
+const updateTodoFunction = (id: number, newProps: updateTodo) => {
+  const a = { id, ...newProps };
+  console.log(a);
+};
+
+updateTodoFunction(1, {
+  title: 'abcd',
+});
 const swapElement = <T, P>(arr1: T, arr2: P): [P, T] => {
   return [arr2, arr1];
 };
