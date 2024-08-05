@@ -1,34 +1,34 @@
 "use strict";
-class Account {
-    constructor(id, owner, balance) {
-        this.id = id;
-        this.owner = owner;
-        this.balance = balance;
+class Person {
+    constructor(fName, lName) {
+        this.fName = fName;
+        this.lName = lName;
     }
-    withdraw(amount) {
-        return this.deduct(amount);
+    get fullName() {
+        return this.fName + ' ' + this.lName;
     }
-    deduct(amount) {
-        console.log(amount);
-        if (amount < this.balance) {
-            this.balance -= amount;
-            return 'your new balance: ' + this.balance;
-        }
-        return 'unsuccessful';
-    }
-    deposit(amount) {
-        if (amount <= 0)
-            throw new Error('invalid amount');
-        this.balance += amount;
-        return ('your account ' +
-            this.id +
-            ' +' +
-            amount +
-            ' deposited. Current balance is : ' +
-            this.balance);
+    walk() {
+        console.log('walking....');
     }
 }
-const user = new Account(1, 'girish', 521);
-console.log(user.deposit(500));
-console.log(user.withdraw(221));
+class Student extends Person {
+    constructor(id, fName, lName) {
+        super(fName, lName);
+        this.id = id;
+    }
+}
+class Teacher extends Person {
+    get fullName() {
+        return 'professor. ' + super.fullName;
+    }
+}
+const printNames = (people) => {
+    people.forEach((person) => {
+        console.log(person.fullName);
+    });
+};
+printNames([
+    new Student(12, 'Girish', 'Digge'),
+    new Teacher('Shane', 'McGill'),
+]);
 //# sourceMappingURL=index.js.map
