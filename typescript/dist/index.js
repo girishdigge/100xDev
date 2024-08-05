@@ -31,4 +31,3 @@ printNames([
     new Student(12, 'Girish', 'Digge'),
     new Teacher('Shane', 'McGill'),
 ]);
-//# sourceMappingURL=index.js.map
