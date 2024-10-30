@@ -1,3 +1,12 @@
-export default function Home() {
-  return <h1 className='text-3xl font-bold'>Hello world!</h1>;
+"use client"
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Appbar } from "@repo/ui/appbar";
+
+export default function Page(): JSX.Element {
+  const session = useSession();
+  return (
+   <div>
+      <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
+   </div>
+  );
 }
