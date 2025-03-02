@@ -7,7 +7,7 @@ const server = http.createServer(function (request: any, response: any) {
 });
 
 const wss = new WebSocketServer({ server });
-
+let userCount = 0;
 wss.on('connection', function connection(ws) {
   ws.on('error', console.error);
   ws.on('message', function message(data, isBinary) {
@@ -17,6 +17,8 @@ wss.on('connection', function connection(ws) {
       }
     });
   });
+  console.log('user connected', ++userCount);
+
   ws.send('Hello! Message From Server!!');
 });
 
