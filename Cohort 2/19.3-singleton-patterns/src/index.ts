@@ -1,13 +1,9 @@
-import { games } from './store';
+import { gameManager } from './store';
 import { startLogger } from './logger';
 let num = 1;
 startLogger();
 setInterval(() => {
-  games.push({
-    id: Math.random().toString(),
-    whitePlayerName: 'Girish Digge' + num,
-    blackPlayerName: 'Andria Botaz' + num,
-    moves: [num.toString()],
-  });
+  gameManager.addGame(num.toString());
+  gameManager.addMove('1', 'b5');
   num++;
-}, 2000);
+}, 3000);

@@ -5,11 +5,7 @@ const logger_1 = require("./logger");
 let num = 1;
 (0, logger_1.startLogger)();
 setInterval(() => {
-    store_1.games.push({
-        id: Math.random().toString(),
-        whitePlayerName: 'Girish Digge' + num,
-        blackPlayerName: 'Andria Botaz' + num,
-        moves: [num.toString()],
-    });
+    store_1.gameManager.addGame(num.toString());
+    store_1.gameManager.addMove('1', 'b5');
     num++;
-}, 2000);
+}, 3000);
