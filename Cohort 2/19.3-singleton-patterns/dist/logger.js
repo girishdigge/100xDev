@@ -4,6 +4,6 @@ exports.startLogger = startLogger;
 const store_1 = require("./store");
 function startLogger() {
     setInterval(() => {
-        store_1.gameManager.log();
+        store_1.GameManager.getInstance().log();
     }, 3000);
 }
