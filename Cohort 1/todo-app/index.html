@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <script>
+    const onPress = () => {
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+
+      fetch('http://localhost:3000/todos', {
+        method: 'POST',
+        body: JSON.stringify({
+          title,
+          description,
+        }),
+        headers: {
+          'content-type': 'application/json',
+        },
+      }).then((res) => {
+        res.json().then((data) => {
+          console.log(data);
+        });
+      });
+    };
+    const removeTODO = (id) => {
+      fetch('http://localhost:3000/todos/' + id, {
+        method: 'DELETE',
+      }).then((res) => {
+        res.json().then(() => {});
+      });
+    };
+    const getData = () => {
+      fetch('http://localhost:3000/todos', {
+        method: 'GET',
+      }).then((res) => {
+        res.json().then((data) => {
+          data.entries().forEach((element) => {
+            let parentElement = document.getElementById('mainArea');
+            let childElement = document.createElement('div');
+            let gchildEle1 = document.createElement('span');
+            let gchildEle2 = document.createElement('span');
+            let gchildEle3 = document.createElement('button');
+            id = element[1].id;
+            title = element[1].title;
+            desc = element[1].description;
+
+            gchildEle1.innerHTML = title;
+            gchildEle2.innerHTML = desc;
+            gchildEle3.innerHTML = 'Delete';
+            gchildEle3.setAttribute('onClick', 'removeTODO(' + id + ')');
+
+            childElement.appendChild(gchildEle1);
+            childElement.appendChild(gchildEle2);
+            childElement.appendChild(gchildEle3);
+            parentElement.appendChild(childElement);
+          });
+        });
+      });
+    };
+    getData();
+  </script>
+  <body>
+    <br />
+    <div class="form">
+      <label class="label" for="title">TODO Title:</label>
+      <input type="text" id="title" />
+      <br />
+      <label class="label" for="description"> Description: </label>
+      <input type="text" id="description" />
+      <br />
+      <button onclick="onPress()">Send Todo</button>
+    </div>
+
+    <div id="mainArea"></div>
+  </body>
+</html>

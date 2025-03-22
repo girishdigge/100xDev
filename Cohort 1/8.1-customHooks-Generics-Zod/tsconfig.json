@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    /* Modules */
+    "module": "commonjs" /* Specify what module code is generated. */,
+    "rootDir": "./",
+    "outDir": "./dist",
+    /* Type Checking */
+    "strict": true
+  }
+}
