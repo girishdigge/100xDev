@@ -17,7 +17,15 @@ func snippetView(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("snippet view"))
 }
 func snippetCreate(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("snippet create"))
+
+	if r.Method != http.MethodPost {
+		w.Header().Set("Allow", http.MethodPost)
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Header()["Date"] = nil
+	w.Write([]byte(`{"name":"Girish"}`))
 }
 func main() {
 	mux := http.NewServeMux()
