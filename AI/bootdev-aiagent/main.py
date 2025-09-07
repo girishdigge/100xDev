@@ -2,6 +2,7 @@ import os
 import sys
 from dotenv import load_dotenv
 from google import genai
+from functions.get_files_info import get_files_info
 
 
 def main():
