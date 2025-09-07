@@ -1,1 +1,16 @@
-console.log("Hello via Bun!");
+import concurretly from 'concurrently';
+
+concurretly([
+  {
+    name: 'server',
+    command: 'bun run dev',
+    cwd: 'packages/server',
+    prefixColor: 'magenta',
+  },
+  {
+    name: 'client',
+    command: 'bun run dev',
+    cwd: 'packages/client',
+    prefixColor: 'green',
+  },
+]);
