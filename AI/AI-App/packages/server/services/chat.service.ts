@@ -18,7 +18,7 @@ export const chatService = {
       input: prompt,
       previous_response_id:
         conversationRepositiory.getLastResponseId(conversationId),
-      // max_output_tokens: 121,
+      // max_output_tokens: 250,
     });
     conversationRepositiory.setLastResponseId(conversationId, response.id);
     return {
