@@ -4,11 +4,16 @@ import axios from 'axios';
 import TypingIndicator from './TypingIndicator';
 import ChatMessages, { type Message } from './ChatMessages';
 import ChatInput, { type ChatFormData } from './ChatInput';
-
+import popSound from '@/assets/sounds/pop.mp3';
+import notificationSound from '@/assets/sounds/notification.mp3';
 type chatResponse = {
   message: string;
 };
 
+const popAudio = new Audio(popSound);
+popAudio.volume = 0.2;
+const notificationAudio = new Audio(notificationSound);
+notificationAudio.volume = 0.2;
 const ChatBox = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isBotTyping, setIsBotTyping] = useState(false);
@@ -20,14 +25,13 @@ const ChatBox = () => {
       setMessages((prev) => [...prev, { content: prompt, role: 'user' }]);
       setIsBotTyping(true);
       setError('');
-      const { data } = await axios.post<chatResponse>(
-        'http://localhost:3000/api/chat',
-        {
-          prompt,
-          conversationId: conversationId.current,
-        }
-      );
+      popAudio.play();
+      const { data } = await axios.post<chatResponse>('/api/chat', {
+        prompt,
+        conversationId: conversationId.current,
+      });
       setMessages((prev) => [...prev, { content: data.message, role: 'bot' }]);
+      notificationAudio.play();
     } catch (error) {
       console.log(error);
       setError('Something went wrong, try again!');
