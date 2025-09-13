@@ -1,7 +1,9 @@
 import OpenAI from 'openai';
-import { Models } from 'openai/resources';
+import { InferenceClient } from '@huggingface/inference';
 
-const client = new OpenAI({
+const inferenceClient = new InferenceClient(process.env.HF_TOKEN);
+
+const openAIClient = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -25,12 +27,21 @@ export const llmClient = {
     instructions,
     previousResponseId,
   }: generateTextOptions): Promise<generateTextResult> {
-    const response = await client.responses.create({
+    const response = await openAIClient.responses.create({
       model,
       input: prompt,
       instructions,
       previous_response_id: previousResponseId,
     });
     return { id: response.id, text: response.output_text };
+  },
+
+  async summarize(text: string) {
+    const output = await inferenceClient.summarization({
+      model: 'facebook/bart-large-cnn',
+      inputs: text,
+      provider: 'hf-inference',
+    });
+    return output.summary_text;
   },
 };

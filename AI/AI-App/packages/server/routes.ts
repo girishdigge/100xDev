@@ -17,7 +17,7 @@ router.get('/api/products/:id/reviews', reviewController.getReviews);
 router.post('/api/products/reviews', reviewController.postReviews);
 
 router.get(
-  '/api/products/:id/reviews/summarizer',
+  '/api/products/:id/reviews/summarize',
   reviewController.summarizeReviews
 );
 

@@ -1,9 +1,11 @@
-import ChatBox from './components/chat/ChatBox';
+// import ChatBox from './components/chat/ChatBox';
+import ReviewList from './components/reviews/ReviewList';
 
 function App() {
   return (
     <div className="p-4 h-screen w-full">
-      <ChatBox />
+      {/* <ChatBox /> */}
+      <ReviewList productId={5} />
     </div>
   );
 }
