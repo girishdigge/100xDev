@@ -1,1 +1,1 @@
-{"root":["./src/index.ts"],"version":"6.0.3"}
+{"root":["./src/index.ts","./src/monitoring/histogram.ts","./src/monitoring/requestCount.ts","./src/monitoring/requestGauge.ts"],"version":"6.0.3"}
