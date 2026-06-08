@@ -4,7 +4,7 @@ const httpRequestDurationMicroseconds = new client.Histogram({
   name: 'http_request_duration_ms',
   help: 'Duration of HTTP request in ms',
   labelNames: ['method', 'route', 'code'],
-  buckets: [0.1, 2, 5, 10, 15, 50, 100, 300, 500, 1000, 3000, 5000],
+  buckets: [0.1, 0.3, 0.5, 1, 1.5, 2, 5, 10, 20, 50, 100],
 });
 
 //@ts-ignore
