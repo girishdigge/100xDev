@@ -1,0 +1,16 @@
+{
+  "name": "psql-migrations",
+  "version": "1.0.0",
+  "description": "stephen grider's postgres course migations implementation.",
+  "license": "ISC",
+  "author": "Girish Digge",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "node-pg-migrate"
+  },
+  "dependencies": {
+    "node-pg-migrate": "^8.0.4",
+    "pg": "^8.22.0"
+  }
+}
