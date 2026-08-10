@@ -26,7 +26,7 @@ func Load() Config {
 		cfg.BaseURL = "https://api.openai.com/v1"
 	}
 	if cfg.Model == "" {
-		cfg.Model = "gpt-4o-mini"
+		cfg.Model = "gpt-5-nano"
 	}
 	return cfg
 }
