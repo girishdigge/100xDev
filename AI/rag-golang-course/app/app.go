@@ -10,6 +10,6 @@ import (
 func Run(ctx context.Context, cfg config.Config) error {
 	client := llm.New(cfg)
 	return chat.RunREPL(ctx, client, chat.Options{
-		SystemPromtFile: cfg.SystemPromptFile,
+		SystemPromptFile: cfg.SystemPromptFile,
 	})
 }

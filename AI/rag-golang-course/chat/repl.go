@@ -14,7 +14,7 @@ import (
 )
 
 type Options struct {
-	SystemPromtFile string
+	SystemPromptFile string
 }
 type spinner struct {
 	stop chan struct{}
@@ -53,7 +53,7 @@ func RunREPL(ctx context.Context, client *llm.Client, opts Options) error {
 	in := bufio.NewScanner(os.Stdin)
 	in.Buffer(make([]byte, 0, 64*1024), 1024*1024)
 
-	history, err := seedHistory(opts.SystemPromtFile)
+	history, err := seedHistory(opts.SystemPromptFile)
 	if err != nil {
 		return err
 	}
